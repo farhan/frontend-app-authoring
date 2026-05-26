@@ -11,8 +11,6 @@ import { adoptCourseSectionUrl, subsectionFirstUnitEditUrl } from '../utils';
 const Breadcrumbs = ({ courseId, parentUnitId }: { courseId: string; parentUnitId: string; }) => {
   const { ancestorXblocks = [] } = useSelector(getCourseSectionVertical);
 
-  const getPathToCourseOutlinePage = (url) => url;
-
   const getPathToCourseUnitPage = (url) => adoptCourseSectionUrl({ url, courseId, parentUnitId });
 
   // based on the level of breadcrumbs the url will differ
@@ -21,7 +19,7 @@ const Breadcrumbs = ({ courseId, parentUnitId }: { courseId: string; parentUnitI
   function getPathToCoursePage(index, url, usageKey: string) {
     let navUrl: string;
     if (index === 0) {
-      navUrl = getPathToCourseOutlinePage(url);
+      navUrl = url;
     } else if (index === 1) {
       navUrl = subsectionFirstUnitEditUrl({ courseId, subsectionId: usageKey });
     } else {
