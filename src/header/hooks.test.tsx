@@ -22,12 +22,7 @@ jest.mock('@edx/frontend-platform/i18n', () => ({
 }));
 
 // Bypass React Query for waffle flags, and just return the default values.
-mockWaffleFlags({
-  // Some flags can be enabled with either a config value or a waffle flag.
-  // For test purposes, we'll configure the video upload page using the config, so leave the waffle flag off.
-  useNewVideoUploadsPage: false,
-  useNewCertificatesPage: false,
-});
+mockWaffleFlags({});
 
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),

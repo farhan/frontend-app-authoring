@@ -30,14 +30,12 @@ const renderComponent = (props = {}, { isEditable = true, canManageAdvancedSetti
   );
 };
 
-mockWaffleFlags();
-
 describe('PageSettingButton', () => {
   beforeEach(() => {
     initializeMocks();
   });
 
-  it('renders the settings button with the new textbooks page link when useNewTextbooksPage is true', () => {
+  it('renders the settings button with the new textbooks page link', () => {
     renderComponent({ legacyLink: 'http://legacylink.com/textbooks' });
 
     const linkElement = screen.getByRole('link');
@@ -50,16 +48,7 @@ describe('PageSettingButton', () => {
     expect(screen.queryByRole('link')).toBeNull();
   });
 
-  it('renders the settings button with the legacy link when useNewTextbooksPage is false', () => {
-    mockWaffleFlags({ useNewTextbooksPage: false });
-
-    renderComponent({ legacyLink: 'http://legacylink.com/textbooks' });
-
-    const linkElement = screen.getByRole('link');
-    expect(linkElement).toHaveAttribute('href', 'http://legacylink.com/textbooks');
-  });
-
-  it('renders the settings button with the new custom pages link when useNewCustomPages is true', () => {
+  it('renders the settings button with the new custom pages link', () => {
     renderComponent();
 
     const linkElement = screen.getByRole('link');
