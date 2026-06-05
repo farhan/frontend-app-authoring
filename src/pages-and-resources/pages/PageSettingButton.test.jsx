@@ -1,7 +1,6 @@
 // @ts-check
 import { screen, render, initializeMocks, fireEvent } from '../../testUtils';
 import PageSettingButton from './PageSettingButton';
-import { mockWaffleFlags } from '../../data/apiHooks.mock';
 import { useCourseUserPermissions } from '../../authz/hooks';
 import PagesAndResourcesProvider from '../PagesAndResourcesProvider';
 
@@ -53,15 +52,6 @@ describe('PageSettingButton', () => {
 
     const linkElement = screen.getByRole('link');
     expect(linkElement).toHaveAttribute('href', `/course/${defaultProps.courseId}/page-id`);
-  });
-
-  it('renders the settings button with the legacy link when useNewCustomPages is false', () => {
-    mockWaffleFlags({ useNewCustomPages: false });
-
-    renderComponent();
-
-    const linkElement = screen.getByRole('link');
-    expect(linkElement).toHaveAttribute('href', defaultProps.legacyLink);
   });
 
   it('renders disabled icon button in read-only mode with legacy link', () => {

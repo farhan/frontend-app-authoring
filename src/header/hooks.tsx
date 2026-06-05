@@ -22,8 +22,6 @@ import { getCourseUpdatesPermissions } from '@src/authz/permissionHelpers';
 
 export const useContentMenuItems = (courseId: string) => {
   const intl = useIntl();
-  const studioBaseUrl = getConfig().STUDIO_BASE_URL;
-  const waffleFlags = useWaffleFlags(courseId);
   const { librariesV2Enabled } = useSelector(getStudioHomeData);
 
   const { canViewCourseUpdates, canViewPagesAndResources } = useCourseUserPermissions(
@@ -41,9 +39,7 @@ export const useContentMenuItems = (courseId: string) => {
     },
     ...(canViewCourseUpdates ?
       [{
-        href: waffleFlags.useNewUpdatesPage
-          ? `/course/${courseId}/course_info`
-          : `${studioBaseUrl}/course_info/${courseId}`,
+        href: `/course/${courseId}/course_info`,
         title: intl.formatMessage(messages['header.links.updates']),
       }] :
       []),
@@ -79,7 +75,6 @@ export const useContentMenuItems = (courseId: string) => {
 export const useSettingMenuItems = (courseId: string) => {
   const intl = useIntl();
   const { canAccessAdvancedSettings: legacyCanAccessAdvancedSettings } = useSelector(getStudioHomeData);
-  const waffleFlags = useWaffleFlags(courseId);
 
   /*
     AuthZ for Course Authoring
